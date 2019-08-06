@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SVProgressHUD
 
 protocol MoviesListViewModelDelegate {
     func setNowPlayingMoviesList(_ model: NowPlayingModel?)
@@ -20,14 +21,18 @@ class MoviesListViewModel {
     
     func getNowPlayingMoviesWithPage(_ page: Int) {
         
-        let params: [String : AnyHashable] = ["api_key" : API_KEY,
+        let params: [String : AnyHashable] = ["api_key" : "API_KEY",
                                               "language" : ENGLISH,
                                               "page" : page]
         
+        Utilities.showProgressHUD()
+        
         movieStore.getNowPlayingMoviesWithParameters(params) { [weak self] (nowPlayingModel, error) in
             if error == nil {
+                Utilities.showProgressHUDWithSuccess("Success")
                 self?.delegate.setNowPlayingMoviesList(nowPlayingModel)
             } else {
+                Utilities.showProgressHUDWithError(error ?? "")
                 self?.delegate.setNowPlayingMoviesList(nil)
             }
         }
