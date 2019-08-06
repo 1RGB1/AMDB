@@ -1,5 +1,5 @@
 //
-//  CompaniesViewModel.swift
+//  CountriesModel.swift
 //  AMDB
 //
 //  Created by Ahmad Ragab on 8/6/19.
@@ -8,19 +8,15 @@
 
 import ObjectMapper
 
-class CompaniesModel : Mappable {
+class CountriesModel : Mappable {
     
-    var id: Int?
-    var logo_path: String?
+    var iso_3166_1: String?
     var name: String?
-    var origin_country: String?
     
     required init?(map: Map) {}
     
     func mapping(map: Map) {
-        id <- map["id"]
-        logo_path <- map["logo_path"]
+        iso_3166_1 <- map["iso_3166_1:"]
         name <- map["name"]
-        origin_country <- map["origin_country"]
     }
 }

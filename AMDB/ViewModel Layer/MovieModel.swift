@@ -1,5 +1,5 @@
 //
-//  MovieViewModel.swift
+//  MovieModel.swift
 //  AMDB
 //
 //  Created by Ahmad Ragab on 8/6/19.
@@ -8,7 +8,7 @@
 
 import ObjectMapper
 
-class MovieModel: BaseViewModel {
+class MovieModel: BaseModel {
     
     var adult: Bool?
     var backdrop_path: String?

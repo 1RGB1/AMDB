@@ -1,5 +1,5 @@
 //
-//  GenresViewModel.swift
+//  GenresModel.swift
 //  AMDB
 //
 //  Created by Ahmad Ragab on 8/6/19.
