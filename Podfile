@@ -7,7 +7,7 @@ target 'AMDB' do
 
   pod 'Alamofire'
   pod 'SVPullToRefreshImprove'
-  pod 'SVProgressHUD','0.9'
+  pod 'SVProgressHUD'
   pod 'SnapKit'
   pod 'Kingfisher'
   pod 'ObjectMapper'
