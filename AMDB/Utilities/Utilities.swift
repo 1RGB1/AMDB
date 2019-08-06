@@ -21,9 +21,9 @@ class Utilities {
     }
     
     class func showProgressHUD() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+        DispatchQueue.main.async {
             SVProgressHUD.show()
-        })
+        }
     }
     
     class func showProgressHUDWithError(_ error: String) {
@@ -31,7 +31,7 @@ class Utilities {
             SVProgressHUD.showError(withStatus: error)
         })
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
             SVProgressHUD.dismiss()
         })
     }

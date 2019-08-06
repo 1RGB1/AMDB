@@ -21,7 +21,7 @@ class MoviesListViewModel {
     
     func getNowPlayingMoviesWithPage(_ page: Int) {
         
-        let params: [String : AnyHashable] = ["api_key" : "API_KEY",
+        let params: [String : AnyHashable] = ["api_key" : API_KEY,
                                               "language" : ENGLISH,
                                               "page" : page]
         
