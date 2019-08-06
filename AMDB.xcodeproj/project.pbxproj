@@ -19,8 +19,8 @@
 		E078A24C22F9E20400023654 /* LanguagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E078A24B22F9E20400023654 /* LanguagesViewModel.swift */; };
 		E078A24E22F9E21900023654 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E078A24D22F9E21900023654 /* VideoViewModel.swift */; };
 		E078A25022F9E22900023654 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E078A24F22F9E22900023654 /* ImageViewModel.swift */; };
+		E078A25222F9F13100023654 /* MoviesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E078A25122F9F13100023654 /* MoviesListViewController.swift */; };
 		E0C7C0BA22F8A18E0053B4E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C7C0B922F8A18E0053B4E4 /* AppDelegate.swift */; };
-		E0C7C0BC22F8A18E0053B4E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C7C0BB22F8A18E0053B4E4 /* ViewController.swift */; };
 		E0C7C0BF22F8A18E0053B4E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0C7C0BD22F8A18E0053B4E4 /* Main.storyboard */; };
 		E0C7C0C122F8A1900053B4E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0C7C0C022F8A1900053B4E4 /* Assets.xcassets */; };
 		E0C7C0C422F8A1900053B4E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0C7C0C222F8A1900053B4E4 /* LaunchScreen.storyboard */; };
@@ -40,9 +40,9 @@
 		E078A24B22F9E20400023654 /* LanguagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagesViewModel.swift; sourceTree = "<group>"; };
 		E078A24D22F9E21900023654 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
 		E078A24F22F9E22900023654 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
+		E078A25122F9F13100023654 /* MoviesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewController.swift; sourceTree = "<group>"; };
 		E0C7C0B622F8A18E0053B4E4 /* AMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0C7C0B922F8A18E0053B4E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E0C7C0BB22F8A18E0053B4E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E0C7C0BE22F8A18E0053B4E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E0C7C0C022F8A1900053B4E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0C7C0C322F8A1900053B4E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -106,8 +106,8 @@
 		E078A23D22F9C4B400023654 /* View Layer */ = {
 			isa = PBXGroup;
 			children = (
-				E0C7C0BB22F8A18E0053B4E4 /* ViewController.swift */,
 				E0C7C0BD22F8A18E0053B4E4 /* Main.storyboard */,
+				E078A25122F9F13100023654 /* MoviesListViewController.swift */,
 			);
 			path = "View Layer";
 			sourceTree = "<group>";
@@ -292,9 +292,9 @@
 				E078A23B22F9C29200023654 /* BaseNetwork.swift in Sources */,
 				E078A24822F9E1E900023654 /* CompaniesViewModel.swift in Sources */,
 				E078A24E22F9E21900023654 /* VideoViewModel.swift in Sources */,
-				E0C7C0BC22F8A18E0053B4E4 /* ViewController.swift in Sources */,
 				E0C7C0BA22F8A18E0053B4E4 /* AppDelegate.swift in Sources */,
 				E078A24A22F9E1F600023654 /* CountriesViewModel.swift in Sources */,
+				E078A25222F9F13100023654 /* MoviesListViewController.swift in Sources */,
 				E078A25022F9E22900023654 /* ImageViewModel.swift in Sources */,
 				E078A24222F9C84100023654 /* Constants.swift in Sources */,
 			);
