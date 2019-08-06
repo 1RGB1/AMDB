@@ -10,12 +10,9 @@ import Alamofire
 
 class NetworkManager {
     
-    // MARK: - Properties
-    static let sharedInstance = NetworkManager()
-    
     // MARK: - Static fuunctions
-    static func performNetworkActivityWithURL(_ url: String,
-                                              Parameters params: [String : AnyObject],
+    class func performNetworkActivityWithURL(_ url: String,
+                                              Parameters params: [String : AnyHashable],
                                               HTTPMethod method: HTTPMethod,
                                               andCompletionHandler completion: @escaping(_ response: DataResponse<Any>) -> ()) {
         
