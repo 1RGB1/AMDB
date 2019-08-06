@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVPullToRefreshImprove
 
 class MoviesListViewController: UIViewController {
 
@@ -17,12 +18,16 @@ class MoviesListViewController: UIViewController {
     var movies = [MovieModel]()
     let movieListViewModel = MoviesListViewModel()
     var page = 1
+    var maxPagesCount = 1
+    var isFirstTimeLoad = true
     
     // MARK: - Life Cycle Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Now Playing"
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.font: UIFont(name: "TimesNewRomanPS-BoldMT", size: 20)!]
+        
         movieListViewModel.delegate = self
         
         initTableView()
@@ -33,9 +38,17 @@ class MoviesListViewController: UIViewController {
     func initTableView() {
         moviesListTableView.delegate = self
         moviesListTableView.dataSource = self
+        moviesListTableView.addInfiniteScrolling { [weak self] in
+            self?.getNowPlayingMovies()
+        }
     }
     
     func getNowPlayingMovies() {
+        
+        if isFirstTimeLoad {
+            Utilities.showProgressHUD()
+        }
+        
         movieListViewModel.getNowPlayingMoviesWithPage(page)
     }
 }
@@ -64,11 +77,30 @@ extension MoviesListViewController : UITableViewDataSource, UITableViewDelegate 
 }
 
 extension MoviesListViewController : MoviesListViewModelDelegate {
-    func setNowPlayingMoviesList(_ model: NowPlayingModel?) {
-        if let nowPlayingMovies = model, let newMovies = nowPlayingMovies.results {
+    func setNowPlayingMoviesList(_ model: NowPlayingModel?, _ error: String?) {
+        if let nowPlayingMovies = model, let newMovies = nowPlayingMovies.results, let allPages = nowPlayingMovies.total_pages {
+            
+            if isFirstTimeLoad {
+                Utilities.showProgressHUDWithSuccess("Success")
+                isFirstTimeLoad = false
+            }
+            
+            moviesListTableView.infiniteScrollingView.stopAnimating()
+            
             movies.append(contentsOf: newMovies)
             page += 1
+            maxPagesCount = allPages
+            
             moviesListTableView.reloadData()
+            moviesListTableView.showsInfiniteScrolling = (page <= maxPagesCount)
+        } else {
+            if isFirstTimeLoad {
+                Utilities.showProgressHUDWithError(error ?? "")
+                isFirstTimeLoad = false
+            }
+            
+            moviesListTableView.infiniteScrollingView.stopAnimating()
+            moviesListTableView.showsInfiniteScrolling = false
         }
     }
 }

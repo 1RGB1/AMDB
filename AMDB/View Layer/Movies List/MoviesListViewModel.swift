@@ -10,7 +10,7 @@ import Foundation
 import SVProgressHUD
 
 protocol MoviesListViewModelDelegate {
-    func setNowPlayingMoviesList(_ model: NowPlayingModel?)
+    func setNowPlayingMoviesList(_ model: NowPlayingModel?, _ error: String?)
 }
 
 class MoviesListViewModel {
@@ -25,15 +25,11 @@ class MoviesListViewModel {
                                               "language" : ENGLISH,
                                               "page" : page]
         
-        Utilities.showProgressHUD()
-        
         movieStore.getNowPlayingMoviesWithParameters(params) { [weak self] (nowPlayingModel, error) in
             if error == nil {
-                Utilities.showProgressHUDWithSuccess("Success")
-                self?.delegate.setNowPlayingMoviesList(nowPlayingModel)
+                self?.delegate.setNowPlayingMoviesList(nowPlayingModel, nil)
             } else {
-                Utilities.showProgressHUDWithError(error ?? "")
-                self?.delegate.setNowPlayingMoviesList(nil)
+                self?.delegate.setNowPlayingMoviesList(nil, error)
             }
         }
     }
