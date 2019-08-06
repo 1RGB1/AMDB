@@ -245,7 +245,7 @@ CGFloat SVProgressHUDRingThickness = 6;
 - (void)setFadeOutTimer:(NSTimer *)newTimer {
     
     if(fadeOutTimer)
-        [fadeOutTimer invalidate], fadeOutTimer = nil;
+        (void)([fadeOutTimer invalidate]), fadeOutTimer = nil;
     
     if(newTimer)
         fadeOutTimer = newTimer;
@@ -283,7 +283,7 @@ CGFloat SVProgressHUDRingThickness = 6;
 - (void)positionHUD:(NSNotification*)notification {
     
     CGFloat keyboardHeight;
-    double animationDuration;
+    double animationDuration = 0.0;
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
@@ -456,11 +456,11 @@ CGFloat SVProgressHUDRingThickness = 6;
                          if(self.alpha == 0) {
                              [[NSNotificationCenter defaultCenter] removeObserver:self];
                              [self cancelRingLayerAnimation];
-                             [hudView removeFromSuperview];
-                             hudView = nil;
+                             [self->hudView removeFromSuperview];
+                             self->hudView = nil;
                              
-                             [overlayWindow removeFromSuperview];
-                             overlayWindow = nil;
+                             [self->overlayWindow removeFromSuperview];
+                             self->overlayWindow = nil;
                              
                              // fixes bug where keyboard wouldn't return as keyWindow upon dismissal of HUD
                              [[UIApplication sharedApplication].windows enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id window, NSUInteger idx, BOOL *stop) {
