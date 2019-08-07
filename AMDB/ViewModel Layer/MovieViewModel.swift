@@ -1,5 +1,5 @@
 //
-//  MovieModel.swift
+//  MovieViewModel.swift
 //  AMDB
 //
 //  Created by Ahmad Ragab on 8/6/19.
@@ -8,13 +8,13 @@
 
 import ObjectMapper
 
-class MovieModel: BaseModel {
+class MovieModel: BaseViewModel {
     
     var adult: Bool?
     var backdrop_path: String?
     var belongs_to_collection: String?
     var budget: Double?
-    var genres: [GenreModel]?
+    var genres: [GenresModel]?
     var homepage: String?
     var id: Int?
     var imdb_id: String?
@@ -23,12 +23,12 @@ class MovieModel: BaseModel {
     var overview: String?
     var popularity: Double?
     var poster_path: String?
-    var production_companies: [CompanyModel]?
-    var production_countries: [CountryModel]?
-    var release_date: String?
+    var production_companies: [CompaniesModel]?
+    var production_countries: [CountriesModel]?
+    var release_date: Date?
     var revenue: Double?
     var runtime: Int?
-    var spoken_languages: [LanguageModel]?
+    var spoken_languages: [LanguagesModel]?
     var status: String?
     var tagline: String?
     var title: String?
@@ -54,8 +54,6 @@ class MovieModel: BaseModel {
         overview <- map["overview"]
         popularity <- map["popularity"]
         poster_path <- map["poster_path"]
-        production_companies <- map["production_companies"]
-        production_countries <- map["production_countries"]
         release_date <- map["release_date"]
         revenue <- map["revenue"]
         runtime <- map["runtime"]
@@ -68,36 +66,5 @@ class MovieModel: BaseModel {
         vote_count <- map["vote_count"]
         videos <- map["videos"]
         images <- map["images"]
-    }
-    
-    func getDuration() -> String {
-        var result = ""
-        
-        if let duration = runtime {
-            let hours: Int = Int(duration / 60)
-            let minutes: Int = Int(duration % 60)
-            
-            if hours > 0 {
-                result += "\(hours)"
-                
-                if minutes > 0 {
-                    if minutes < 10 {
-                        result += ":0\(minutes)"
-                    } else {
-                        result += ":\(minutes)"
-                    }
-                }
-                
-                result += " hours"
-            } else {
-                if minutes > 0 {
-                    result += "\(minutes)"
-                }
-                
-                result += " minutes"
-            }
-        }
-        
-        return result
     }
 }
