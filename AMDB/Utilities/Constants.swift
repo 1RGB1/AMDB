@@ -27,6 +27,7 @@ let TIMEOUT: Double = 10.0
 let ENGLISH: String = "en-US"
 
 // Calling APIs
-let BASE_URL: String = "https://api.themoviedb.org/3/movie"
+let BASE_URL: String = "https://api.themoviedb.org/3"
 let IMAGE_BASE_URL: String = "https://image.tmdb.org/t/p/w500"
-let NOW_PLAYING: String = BASE_URL + "/now_playing"
+let NOW_PLAYING: String = BASE_URL + "/movie/now_playing"
+let MOVIE: String = BASE_URL + "/movie/"
