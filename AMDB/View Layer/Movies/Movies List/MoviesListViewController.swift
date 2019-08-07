@@ -65,15 +65,13 @@ extension MoviesListViewController : UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let model = movies[indexPath.row]
-        performSegue(withIdentifier: "showMovieDetailsSegue", sender: model)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showMovieDetailsSegue" {
-            let detailsViewController = segue.destination as! MovieDetailsViewController
-            detailsViewController.movie = sender as? MovieModel
-        }
+        let movieId = movies[indexPath.row].id
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let detailsViewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        
+        detailsViewController.movieId = movieId
+        self.navigationController?.pushViewController(detailsViewController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

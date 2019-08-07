@@ -16,10 +16,25 @@ class MovieStore : BaseNetwork {
             
             if response.result.value == nil {
                 completion(nil, self.handleError(999))
+                return
             }
             
             let nowPlayingModel = Mapper<NowPlayingModel>().map(JSONObject: response.result.value)
             completion(nowPlayingModel, nowPlayingModel?.status_message)
+        }
+    }
+    
+    func getMovieDetailsById(_ id: Int, withParameters params: [String : AnyHashable], andCompletionHandler completion: @escaping (_ model: MovieModel?, _ error: String?) -> ()) {
+        
+        NetworkManager.performNetworkActivityWithURL("\(MOVIE)\(id)", Parameters: params, HTTPMethod: GET) { (response) in
+            
+            if response.result.value == nil {
+                completion(nil, self.handleError(999))
+                return
+            }
+            
+            let movieModel = Mapper<MovieModel>().map(JSONObject: response.result.value)
+            completion(movieModel, movieModel?.status_message)
         }
     }
 }

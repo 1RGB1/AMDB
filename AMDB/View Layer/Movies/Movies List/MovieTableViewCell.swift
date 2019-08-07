@@ -16,7 +16,7 @@ class MovieTableViewCell : UITableViewCell {
     
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
-    @IBOutlet weak var movieDescriptionLabel: UILabel!
+    @IBOutlet weak var movieReleasedDateLabel: UILabel!
     
     // MARK: - Functions
     override func awakeFromNib() {
@@ -27,13 +27,8 @@ class MovieTableViewCell : UITableViewCell {
     }
     
     func setCellModel(_ model: MovieModel) {
-        setImage(model.backdrop_path ?? "")
+        Utilities.setImage(movieImageView, model.backdrop_path ?? "")
         movieTitleLabel.text = model.title ?? ""
-        movieDescriptionLabel.text = model.overview ?? ""
-    }
-    
-    func setImage(_ imageURL: String) {
-        let url = URL(string: IMAGE_BASE_URL + imageURL)
-        movieImageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "themoviedb"), options:[.transition(.fade(1))])
+        movieReleasedDateLabel.text = model.release_date ?? "N/A"
     }
 }
