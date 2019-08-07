@@ -9,7 +9,7 @@
 import UIKit
 import SVPullToRefreshImprove
 
-class MoviesListViewController: UIViewController {
+class MoviesListViewController : UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var moviesListTableView: UITableView!
@@ -65,6 +65,15 @@ extension MoviesListViewController : UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = movies[indexPath.row]
+        performSegue(withIdentifier: "showMovieDetailsSegue", sender: model)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMovieDetailsSegue" {
+            let detailsViewController = segue.destination as! MovieDetailsViewController
+            detailsViewController.movie = sender as? MovieModel
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

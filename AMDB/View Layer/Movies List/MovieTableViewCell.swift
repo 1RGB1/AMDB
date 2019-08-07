@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class MovieTableViewCell: UITableViewCell {
+class MovieTableViewCell : UITableViewCell {
 
     // MARK: - Outlets
     @IBOutlet weak var cellContentView: UIView!
@@ -27,7 +27,7 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     func setCellModel(_ model: MovieModel) {
-        setImage(model.poster_path ?? "")
+        setImage(model.backdrop_path ?? "")
         movieTitleLabel.text = model.title ?? ""
         movieDescriptionLabel.text = model.overview ?? ""
     }
