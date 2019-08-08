@@ -35,8 +35,8 @@ class MovieModel: BaseModel {
     var video: Bool?
     var vote_average: Double?
     var vote_count: Int?
-    var videos: [VideosModel]?
-    var images: [ImagesModel]?
+    var videos: VideosModel?
+    var images: ImagesModel?
     
     override func mapping(map: Map) {
         super.mapping(map: map)
