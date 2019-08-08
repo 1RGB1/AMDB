@@ -1,5 +1,5 @@
 //
-//  BaseViewModel.swift
+//  BaseModel.swift
 //  AMDB
 //
 //  Created by Ahmad Ragab on 8/6/19.
@@ -8,7 +8,7 @@
 
 import ObjectMapper
 
-class BaseViewModel : Mappable {
+class BaseModel : Mappable {
     
     var status_code: Int?
     var status_message: String?

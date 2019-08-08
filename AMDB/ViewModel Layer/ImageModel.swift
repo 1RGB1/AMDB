@@ -1,5 +1,5 @@
 //
-//  ImageViewModel.swift
+//  ImagesModel.swift
 //  AMDB
 //
 //  Created by Ahmad Ragab on 8/6/19.
