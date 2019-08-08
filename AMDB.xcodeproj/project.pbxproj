@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		993294B5012691C26E87CCC8 /* Pods_AMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83C7E5F8558A37477C06D39 /* Pods_AMDB.framework */; };
+		E031057822FCBA9E009C1870 /* SearchMovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031057722FCBA9E009C1870 /* SearchMovieTableViewCell.swift */; };
 		E078A23922F8EFFC00023654 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E078A23822F8EFFC00023654 /* NetworkManager.swift */; };
 		E078A23B22F9C29200023654 /* BaseNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = E078A23A22F9C29200023654 /* BaseNetwork.swift */; };
 		E078A23F22F9C78200023654 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E078A23E22F9C78200023654 /* BaseModel.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		C83C7E5F8558A37477C06D39 /* Pods_AMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D26F84A39E510D5348C5F389 /* Pods-AMDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AMDB.debug.xcconfig"; path = "Target Support Files/Pods-AMDB/Pods-AMDB.debug.xcconfig"; sourceTree = "<group>"; };
+		E031057722FCBA9E009C1870 /* SearchMovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieTableViewCell.swift; sourceTree = "<group>"; };
 		E078A23822F8EFFC00023654 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E078A23A22F9C29200023654 /* BaseNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNetwork.swift; sourceTree = "<group>"; };
 		E078A23E22F9C78200023654 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				E078A25A22FA199000023654 /* MoviesListViewModel.swift */,
 				E078A25322FA083C00023654 /* MovieTableViewCell.swift */,
+				E031057722FCBA9E009C1870 /* SearchMovieTableViewCell.swift */,
 				E078A25122F9F13100023654 /* MoviesListViewController.swift */,
 			);
 			path = "Movies List";
@@ -352,6 +355,7 @@
 				E078A24C22F9E20400023654 /* LanguageModel.swift in Sources */,
 				E078A23922F8EFFC00023654 /* NetworkManager.swift in Sources */,
 				E078A23F22F9C78200023654 /* BaseModel.swift in Sources */,
+				E031057822FCBA9E009C1870 /* SearchMovieTableViewCell.swift in Sources */,
 				E078A23B22F9C29200023654 /* BaseNetwork.swift in Sources */,
 				E078A25922FA0A8500023654 /* NowPlayingModel.swift in Sources */,
 				E078A24822F9E1E900023654 /* CompanyModel.swift in Sources */,

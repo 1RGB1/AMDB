@@ -12,6 +12,7 @@ import SVPullToRefreshImprove
 class MoviesListViewController : UIViewController {
 
     // MARK: - Outlets
+    @IBOutlet weak var searchMovieTextField: UITextField!
     @IBOutlet weak var moviesListTableView: UITableView!
     
     // MARK: - Properties
