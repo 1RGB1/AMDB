@@ -40,5 +40,6 @@ class ImagesModel : Mappable {
     
     func mapping(map: Map) {
         backdrops <- map["backdrops"]
+        posters <- map["posters"]
     }
 }
