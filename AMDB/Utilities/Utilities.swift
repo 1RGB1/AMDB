@@ -41,4 +41,9 @@ class Utilities {
             SVProgressHUD.dismiss()
         }
     }
+    
+    class func setImage(_ imageView: UIImageView, _ imageURL: String) {
+        let url = URL(string: IMAGE_BASE_URL + imageURL)
+        imageView.kf.setImage(with: url, placeholder: #imageLiteral(resourceName: "themoviedb"), options:[.transition(.fade(1))])
+    }
 }

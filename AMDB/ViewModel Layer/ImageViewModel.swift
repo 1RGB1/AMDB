@@ -1,5 +1,5 @@
 //
-//  ImagesModel.swift
+//  ImageViewModel.swift
 //  AMDB
 //
 //  Created by Ahmad Ragab on 8/6/19.
@@ -40,6 +40,5 @@ class ImagesModel : Mappable {
     
     func mapping(map: Map) {
         backdrops <- map["backdrops"]
-        posters <- map["posters"]
     }
 }

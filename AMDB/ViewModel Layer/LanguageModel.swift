@@ -1,5 +1,5 @@
 //
-//  GenresModel.swift
+//  LanguageModel.swift
 //  AMDB
 //
 //  Created by Ahmad Ragab on 8/6/19.
@@ -8,15 +8,15 @@
 
 import ObjectMapper
 
-class GenresModel : Mappable {
+class LanguageModel : Mappable {
     
-    var id: Int?
+    var iso_639_1: String?
     var name: String?
     
     required init?(map: Map) {}
     
     func mapping(map: Map) {
-        id <- map["id"]
+        iso_639_1 <- map["iso_639_1"]
         name <- map["name"]
     }
 }

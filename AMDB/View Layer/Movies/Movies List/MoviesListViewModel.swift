@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SVProgressHUD
 
 protocol MoviesListViewModelDelegate {
     func setNowPlayingMoviesList(_ model: NowPlayingModel?, _ error: String?)
@@ -19,6 +18,7 @@ class MoviesListViewModel {
     var movieStore = MovieStore()
     var delegate: MoviesListViewModelDelegate!
     
+    // MARK: - Functions
     func getNowPlayingMoviesWithPage(_ page: Int) {
         
         let params: [String : AnyHashable] = ["api_key" : API_KEY,
