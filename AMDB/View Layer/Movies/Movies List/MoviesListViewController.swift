@@ -84,7 +84,7 @@ extension MoviesListViewController : UITableViewDataSource, UITableViewDelegate 
 }
 
 extension MoviesListViewController : MoviesListViewModelDelegate {
-    func setNowPlayingMoviesList(_ model: NowPlayingModel?, _ error: String?) {
+    func setNowPlayingMoviesList(_ model: SearchMoviesModel?, _ error: String?) {
         if let nowPlayingMovies = model, let newMovies = nowPlayingMovies.results, let allPages = nowPlayingMovies.total_pages {
             
             if isFirstTimeLoad {

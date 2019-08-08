@@ -9,7 +9,7 @@
 import Foundation
 
 protocol MoviesListViewModelDelegate {
-    func setNowPlayingMoviesList(_ model: NowPlayingModel?, _ error: String?)
+    func setNowPlayingMoviesList(_ model: SearchMoviesModel?, _ error: String?)
 }
 
 class MoviesListViewModel {
