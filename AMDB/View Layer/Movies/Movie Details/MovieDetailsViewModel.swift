@@ -23,7 +23,7 @@ class MovieDetailsViewModel {
         
         let params: [String : AnyHashable] = ["api_key" : API_KEY,
                                               "language" : ENGLISH,
-                                              "append_to_response" : "videos,images"]
+                                              "append_to_response" : "\(VIDEOS),\(IMAGES)"]
         
         movieStore.getMovieDetailsById(id, withParameters: params) { [weak self] (movieModel, error) in
             if error == nil {

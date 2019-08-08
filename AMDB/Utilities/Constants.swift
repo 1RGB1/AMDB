@@ -21,8 +21,8 @@ let API_KEY: String = "4cbf3db237c47bdf6823456c12b9e569"
 
 // Other URL Configurations
 let APPENED_TO_RESPONSE: String = "&append_to_response="
-let IMAGES: String = "images"
 let VIDEOS: String = "videos"
+let IMAGES: String = "images"
 let TIMEOUT: Double = 10.0
 let ENGLISH: String = "en-US"
 
