@@ -8,7 +8,7 @@
 
 import ObjectMapper
 
-class NowPlayingModel : BaseModel {
+class SearchMoviesModel : BaseModel {
     
     var page: Int?
     var results: [MovieModel]?

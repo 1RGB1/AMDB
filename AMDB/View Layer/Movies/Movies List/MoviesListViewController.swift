@@ -12,14 +12,25 @@ import SVPullToRefreshImprove
 class MoviesListViewController : UIViewController {
 
     // MARK: - Outlets
+    @IBOutlet weak var searchMovieSearchBar: UISearchBar!
     @IBOutlet weak var moviesListTableView: UITableView!
+    @IBOutlet weak var noDataFoundLabel: UILabel!
     
     // MARK: - Properties
-    var movies = [MovieModel]()
     let movieListViewModel = MoviesListViewModel()
+    
+    var movies = [MovieModel]()
+    var searchResult = [MovieModel]()
+    var searchKeyword = ""
+    
     var page = 1
+    var searchPage = 1
+    
     var maxPagesCount = 1
+    var maxSearchPages = 1
+    
     var isFirstTimeLoad = true
+    var isInSearchMode = false
     
     // MARK: - Life Cycle Functions
     override func viewDidLoad() {
@@ -29,6 +40,7 @@ class MoviesListViewController : UIViewController {
             [NSAttributedString.Key.font: UIFont(name: "TimesNewRomanPS-BoldMT", size: 20)!]
         
         movieListViewModel.delegate = self
+        searchMovieSearchBar.delegate = self
         
         initTableView()
         getNowPlayingMovies()
@@ -38,8 +50,16 @@ class MoviesListViewController : UIViewController {
     func initTableView() {
         moviesListTableView.delegate = self
         moviesListTableView.dataSource = self
+        handleLoadMore()
+    }
+    
+    func handleLoadMore() {
         moviesListTableView.addInfiniteScrolling { [weak self] in
-            self?.getNowPlayingMovies()
+            if (self?.isInSearchMode ?? false) {
+                self?.getMoviesBySearch()
+            } else {
+                self?.getNowPlayingMovies()
+            }
         }
     }
     
@@ -51,6 +71,10 @@ class MoviesListViewController : UIViewController {
         
         movieListViewModel.getNowPlayingMoviesWithPage(page)
     }
+    
+    func getMoviesBySearch() {
+        movieListViewModel.getMoviesBySearchWith(searchPage, andKeyword: searchKeyword)
+    }
 }
 
 // MARK: Extensions
@@ -61,11 +85,32 @@ extension MoviesListViewController : UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        
+        var count = 0
+        
+        if isInSearchMode {
+            count = searchResult.count
+        } else {
+            count = movies.count
+        }
+        
+        if count == 0 {
+            noDataFoundLabel.isHidden = false
+            if !isFirstTimeLoad {
+                noDataFoundLabel.text = "No Data Found"
+            }
+            moviesListTableView.isHidden = true
+        } else {
+            noDataFoundLabel.isHidden = true
+            noDataFoundLabel.text = ""
+            moviesListTableView.isHidden = false
+        }
+        
+        return count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let movieId = movies[indexPath.row].id
+        let movieId = (isInSearchMode) ? searchResult[indexPath.row].id : movies[indexPath.row].id
         
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let detailsViewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
@@ -75,17 +120,51 @@ extension MoviesListViewController : UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = moviesListTableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath) as! MovieTableViewCell
         
-        cell.setCellModel(movies[indexPath.row])
+        if isInSearchMode {
+            let cell = moviesListTableView.dequeueReusableCell(withIdentifier: "SearchMovieTableViewCell", for: indexPath) as! SearchMovieTableViewCell
+            cell.setCellModel(searchResult[indexPath.row])
+            return cell
+        } else {
+            let cell = moviesListTableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath) as! MovieTableViewCell
+            cell.setCellModel(movies[indexPath.row])
+            return cell
+        }
+    }
+}
+
+extension MoviesListViewController {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchMovieSearchBar.resignFirstResponder()
+    }
+}
+
+extension MoviesListViewController : UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        return cell
+        handleLoadMore()
+        searchResult.removeAll()
+        searchPage = 1
+        maxSearchPages = 1
+        
+        if searchText.count >= 4 {
+            isInSearchMode = true
+            searchKeyword = searchText
+            movieListViewModel.getMoviesBySearchWith(searchPage, andKeyword: searchKeyword)
+            moviesListTableView.separatorStyle = .singleLine
+        } else {
+            isInSearchMode = false
+            moviesListTableView.separatorStyle = .none
+            moviesListTableView.reloadData()
+        }
     }
 }
 
 extension MoviesListViewController : MoviesListViewModelDelegate {
-    func setNowPlayingMoviesList(_ model: NowPlayingModel?, _ error: String?) {
-        if let nowPlayingMovies = model, let newMovies = nowPlayingMovies.results, let allPages = nowPlayingMovies.total_pages {
+    func setNowPlayingMoviesList(_ model: SearchMoviesModel?, _ error: String?) {
+        if let searchMoviesModel = model, let newMovies = searchMoviesModel.results, let allPages = searchMoviesModel.total_pages {
             
             if isFirstTimeLoad {
                 Utilities.showProgressHUDWithSuccess("Success")
@@ -105,6 +184,24 @@ extension MoviesListViewController : MoviesListViewModelDelegate {
                 Utilities.showProgressHUDWithError(error ?? "")
                 isFirstTimeLoad = false
             }
+            
+            moviesListTableView.infiniteScrollingView.stopAnimating()
+            moviesListTableView.showsInfiniteScrolling = false
+        }
+    }
+    
+    func setSearchMoviesList(_ model: SearchMoviesModel?, _ error: String?) {
+        if let searchMoviesModel = model, let newMovies = searchMoviesModel.results, let allPages = searchMoviesModel.total_pages {
+            
+            moviesListTableView.infiniteScrollingView.stopAnimating()
+            
+            searchResult.append(contentsOf: newMovies)
+            searchPage += 1
+            maxSearchPages = allPages
+            
+            moviesListTableView.reloadData()
+            moviesListTableView.showsInfiniteScrolling = (searchPage <= maxSearchPages)
+        } else {
             
             moviesListTableView.infiniteScrollingView.stopAnimating()
             moviesListTableView.showsInfiniteScrolling = false

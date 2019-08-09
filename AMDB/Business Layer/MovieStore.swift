@@ -10,7 +10,7 @@ import ObjectMapper
 
 class MovieStore : BaseNetwork {
     
-    func getNowPlayingMoviesWithParameters(_ params: [String : AnyHashable], andCompletionHandler completion: @escaping (_ model: NowPlayingModel?, _ error: String?) -> ()) {
+    func getNowPlayingMoviesWithParameters(_ params: [String : AnyHashable], andCompletionHandler completion: @escaping (_ model: SearchMoviesModel?, _ error: String?) -> ()) {
         
         NetworkManager.performNetworkActivityWithURL(NOW_PLAYING, Parameters: params, HTTPMethod: GET) { (response) in
             
@@ -19,8 +19,8 @@ class MovieStore : BaseNetwork {
                 return
             }
             
-            let nowPlayingModel = Mapper<NowPlayingModel>().map(JSONObject: response.result.value)
-            completion(nowPlayingModel, nowPlayingModel?.status_message)
+            let searchMoviesModel = Mapper<SearchMoviesModel>().map(JSONObject: response.result.value)
+            completion(searchMoviesModel, searchMoviesModel?.status_message)
         }
     }
     
@@ -35,6 +35,20 @@ class MovieStore : BaseNetwork {
             
             let movieModel = Mapper<MovieModel>().map(JSONObject: response.result.value)
             completion(movieModel, movieModel?.status_message)
+        }
+    }
+    
+    func searchMovieWithParameters(_ params: [String : AnyHashable], andCompletionHandler completion: @escaping (_ model: SearchMoviesModel?, _ error: String?) -> ()) {
+        
+        NetworkManager.performNetworkActivityWithURL(SEARCH_MOVIE, Parameters: params, HTTPMethod: GET) { (response) in
+            
+            if response.result.value == nil {
+                completion(nil, self.handleError(999))
+                return
+            }
+            
+            let searchMoviesModel = Mapper<SearchMoviesModel>().map(JSONObject: response.result.value)
+            completion(searchMoviesModel, searchMoviesModel?.status_message)
         }
     }
 }
