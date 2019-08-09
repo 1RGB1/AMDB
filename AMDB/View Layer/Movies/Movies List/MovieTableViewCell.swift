@@ -13,12 +13,11 @@ class MovieTableViewCell : UITableViewCell {
 
     // MARK: - Outlets
     @IBOutlet weak var cellContentView: UIView!
-    
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var movieReleasedDateLabel: UILabel!
     
-    // MARK: - Functions
+    // MARK: - Life Cycle Functions
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -26,6 +25,7 @@ class MovieTableViewCell : UITableViewCell {
         cellContentView.addShadow(color: UIColor.black, opacity: 0.3, radius: 2)
     }
     
+    // MARK: - Life Cycle Functions
     func setCellModel(_ model: MovieModel) {
         Utilities.setImage(movieImageView, model.backdrop_path ?? "")
         movieTitleLabel.text = model.title ?? ""

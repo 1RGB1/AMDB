@@ -9,9 +9,19 @@
 import UIKit
 
 class SearchMovieTableViewCell: UITableViewCell {
-
+    
+    // MARK: - Outlets
+    @IBOutlet weak var movieImageView: UIImageView!
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    
+    // MARK: - Life Cycle Functions
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    // MARK: - Functions
+    func setCellModel(_ model: MovieModel) {
+        Utilities.setImage(movieImageView, model.poster_path ?? "")
+        movieTitleLabel.text = model.title ?? ""
     }
 }
