@@ -8,6 +8,6 @@ This is an App to use The movie database to fetch list of latest movies and show
 
 ## Features
 
-*    **Show movies a table view**
+*    **Show movies in a table view**
 *    **Select a movie to know more about it**
 *    **Search for any movie**
