@@ -6,7 +6,7 @@ For sudying purposes
 
 This is an App to use The movie database to fetch list of latest movies and show it in simple tableview.
 
-### Features
+## Features
 
 *    **Show movies a table view**
 *    **Select a movie to know more about it**
